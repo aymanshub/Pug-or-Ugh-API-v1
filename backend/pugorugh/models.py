@@ -21,7 +21,7 @@ class Dog(models.Model):
         ('u', 'Unknown'),
     )
     name = models.CharField(max_length=255)
-    image_filename = models.FilePathField()
+    image_filename = models.CharField(max_length=255)
     breed = models.CharField(max_length=255)
     age = models.PositiveIntegerField()
     gender = models.CharField(choices=DOG_GENDERS, max_length=1)
@@ -65,14 +65,14 @@ class UserPref(models.Model):
     gender = models.CharField(choices=DOG_GENDERS, max_length=1)
     size = models.CharField(choices=DOG_SIZES, max_length=2)
 
-    @receiver(post_save, sender=User)
-    def create_user_profile(sender, instance, created, **kwargs):
-        if created:
-            UserPref.objects.create(user=instance)
-
-    @receiver(post_save, sender=User)
-    def save_user_profile(sender, instance, **kwargs):
-        instance.profile.save()
+    # @receiver(post_save, sender=User)
+    # def create_user_profile(sender, instance, created, **kwargs):
+    #     if created:
+    #         UserPref.objects.create(user=instance)
+    #
+    # @receiver(post_save, sender=User)
+    # def save_user_profile(sender, instance, **kwargs):
+    #     instance.profile.save()
 
 
 
